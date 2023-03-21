@@ -14,7 +14,7 @@ pipeline {
             }
 
         }
-    }
+    
         stage('Test') {
             steps {
                 // To run Maven on a Windows agent, use
@@ -22,6 +22,6 @@ pipeline {
             }
         }
         
-        
+     }   
     
 }

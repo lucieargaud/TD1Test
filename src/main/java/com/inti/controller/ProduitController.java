@@ -13,11 +13,11 @@ public class ProduitController {
 	@Autowired
 	IProduitRepository ipr;
 	
-	@GetMapping("hello")
-	public String hello()
-	{
-		return "hello";
-	}
+//	@GetMapping("hello")
+//	public String hello()
+//	{
+//		return "hello";
+//	}
 	
 	@GetMapping("listeProduit")
 	public String listeSalarie(Model m) {

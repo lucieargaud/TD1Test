@@ -1,25 +1,24 @@
 package com.inti.controller;
 
+import org.springframework.test.web.servlet.MockMvc;
+
+import com.inti.model.Salarie;
+import com.inti.repository.ISalarieRepository;
+
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.stereotype.Controller;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 
-import com.inti.repository.ISalarieRepository;
-
-@Controller
-@WebMvcTest(controllers = SalarieController.class)
+@WebMvcTest(SalarieController.class)
 public class SalarieControllerTest {
 
 	@Autowired
@@ -29,19 +28,36 @@ public class SalarieControllerTest {
 	private ISalarieRepository isr;
 	
 	@Test
-	private void tousSalaries()
+	public void saveSalarie() throws Exception
 	{
-		try {
-			mock.perform(get("/salaries"))
-			.andExpect(status().isOk())
-			.andExpect(view().name("salaries "))
-			.andExpect(forwardedUrl("/salaries.html"))
-			.andExpect((ResultMatcher) content().string(containsString("Liste des salariés")))
-			.andDo(print());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		mock.perform(get("/formSalarie"))
+		.andExpect(status().isOk())
+		.andDo(print());
+	}
+	
+	@Test
+	@DisplayName("Test enregistrement formulaire")
+	public void enregistrementSalarie() throws Exception
+	{
+		mock.perform(post("/saveSalarie").sessionAttr("salarie", new Salarie(1, "A", "B", "a.b@xy.fr")))
+		.andExpect(status().is3xxRedirection())
+		.andDo(print());
 	}
 	
 	
+	@Test
+	public void allSalarie() throws Exception
+	{
+		mock.perform(get("/listeSalarie"))
+		.andExpect(status().isOk())
+		.andDo(print());
+	}
+	
+	@Test
+	public void supprSalarie() throws Exception
+	{
+		mock.perform(get("/deleteSalarie?id=2"))
+		.andExpect(status().is3xxRedirection())
+		.andDo(print());
+	}
 }

@@ -32,9 +32,7 @@ public class SalarieController {
 	}
 
 	@PostMapping("saveSalarie")
-	public String saveSalarie(@RequestParam("nom") String nom, @RequestParam("prenom") String prenom,
-			 @RequestParam("email") String email) {
-		Salarie s = new Salarie(nom, prenom, email);
+	public String saveSalarie(@ModelAttribute("salarie") Salarie s) {
 		isr.save(s);
 		return "redirect:/listeSalarie";
 	}

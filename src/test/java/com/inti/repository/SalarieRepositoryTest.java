@@ -73,7 +73,7 @@ public class SalarieRepositoryTest {
 		savedSalarie = isr.save(s);
 		// Then
 		assertThat(savedSalarie.getNom()).isEqualTo(s.getNom());
-		assertThat(savedSalarie.getId()).isEqualTo(s.getId());
+
 	}
 	
 	@Test

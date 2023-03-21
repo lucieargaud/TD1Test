@@ -105,7 +105,7 @@ public class SalarieRepositoryTest {
 	@Test
 	public void getSalarieByNom()
 	{
-		// Given
+		// G
 		Salarie s3 = isr.save(new Salarie("A", "CCC", "bbbccc@abc.fr"));
 		// When
 		List<Salarie> listeS = isr.findByNom("A");

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.inti.model.Salarie;
+import com.inti.repository.IEntrepriseRepository;
 import com.inti.repository.ISalarieRepository;
 
 @Controller
@@ -18,6 +19,8 @@ public class SalarieController {
 
 	@Autowired
 	ISalarieRepository isr;
+	@Autowired
+	IEntrepriseRepository ier;
 	
 	@GetMapping("hello")
 	public String hello()
@@ -32,7 +35,8 @@ public class SalarieController {
 	}
 
 	@PostMapping("saveSalarie")
-	public String saveSalarie(@ModelAttribute("salarie") Salarie s) {
+	public String saveSalarie(@ModelAttribute("salarie") Salarie s, @RequestParam("idEntreprise") int idE) {
+		s.setEntreprise(ier.getReferenceById(idE));
 		isr.save(s);
 		return "redirect:/listeSalarie";
 	}

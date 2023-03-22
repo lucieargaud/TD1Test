@@ -2,8 +2,8 @@ package com.inti.controller;
 
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.inti.model.Salarie;
-import com.inti.repository.ISalarieRepository;
+import com.inti.model.Entreprise;
+import com.inti.repository.IEntrepriseRepository;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
@@ -18,45 +18,45 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-@WebMvcTest(SalarieController.class)
-public class SalarieControllerTest {
+@WebMvcTest(EntrepriseController.class)
+public class EntrepriseControllerTest {
 
 	@Autowired
 	private MockMvc mock;
 	
 	@MockBean
-	private ISalarieRepository isr;
+	private IEntrepriseRepository isr;
 	
 	@Test
-	public void saveSalarie() throws Exception
+	public void saveEntreprise() throws Exception
 	{
-		mock.perform(get("/formSalarie"))
+		mock.perform(get("/entreprise/form"))
 		.andExpect(status().isOk())
 		.andDo(print());
 	}
 	
 	@Test
 	@DisplayName("Test enregistrement formulaire")
-	public void enregistrementSalarie() throws Exception
+	public void enregistrementEntreprise() throws Exception
 	{
-		mock.perform(post("/saveSalarie").sessionAttr("salarie", new Salarie(1, "A", "B", "a.b@xy.fr")).sessionAttr("idE", 20))
+		mock.perform(post("/entreprise/save").sessionAttr("entreprise", new Entreprise(1, "A", "ADR")))
 		.andExpect(status().is3xxRedirection())
 		.andDo(print());
 	}
 	
 	
 	@Test
-	public void allSalarie() throws Exception
+	public void allEntreprise() throws Exception
 	{
-		mock.perform(get("/listeSalarie"))
+		mock.perform(get("/entreprise/liste"))
 		.andExpect(status().isOk())
 		.andDo(print());
 	}
 	
 	@Test
-	public void supprSalarie() throws Exception
+	public void supprEntreprise() throws Exception
 	{
-		mock.perform(get("/deleteSalarie?id=2"))
+		mock.perform(get("/entreprise/delete?id=2"))
 		.andExpect(status().is3xxRedirection())
 		.andDo(print());
 	}

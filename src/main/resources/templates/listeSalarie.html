@@ -15,13 +15,16 @@
 	    <div class="col">Id</div>
 	    <div class="col">Nom</div>
 	    <div class="col">Prénom</div>
+	    <div class="col">Entreprise</div>
 	    <div class="col">Email</div>
+	    <div class="col"></div>
 	  </div>
 
 		  <div class="row" th:each="sal : ${listeSalarie}">
 		    <div class="col" th:text= "${sal.id}"></div>
 		    <div class="col" th:text="${sal.nom}"></div>
 		    <div class="col" th:text="${sal.prenom}"></div>
+		     <div class="col" th:text="${sal.entreprise}"></div>
 		    <div class="col" th:text= "${sal.email}"></div>
 		    <div class="col">
 		    	<a th:href="'deleteSalarie?id='+${ sal.id }"> <button type="button" class="btn btn-outline-danger">Supprimer</button></a>

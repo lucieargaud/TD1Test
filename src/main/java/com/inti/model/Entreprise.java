@@ -25,9 +25,9 @@ public class Entreprise {
 	private String nom;
 	private String adresse;
 		
-//	@Exclude
-//	@OneToMany(mappedBy = "entreprise")
-//	private List<Salarie> listeSalarie;
+	@Exclude
+	@OneToMany(mappedBy = "entreprise")
+	private List<Salarie> listeSalarie;
 	
 	public Entreprise(String nom, String adresse) {
 		super();
@@ -35,12 +35,12 @@ public class Entreprise {
 		this.adresse = adresse;
 	}
 
-//	public Entreprise(int id, String nom, String adresse) {
-//		super();
-//		this.id = id;
-//		this.nom = nom;
-//		this.adresse = adresse;
-//	}
+	public Entreprise(int id, String nom, String adresse) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.adresse = adresse;
+	}
 	
 	
 }

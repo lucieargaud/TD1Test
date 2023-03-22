@@ -29,10 +29,10 @@ public class Salarie {
     private String prenom;
     private String email;
     
-//    @Exclude
-//    @ManyToOne
-//    @JoinColumn(name="idE")
-//    private Entreprise entreprise;
+    @Exclude
+    @ManyToOne
+    @JoinColumn(name="idE")
+    private Entreprise entreprise;
     
 	public Salarie(String nom, String prenom, String email) {
 		super();
@@ -41,13 +41,13 @@ public class Salarie {
 		this.email = email;
 	}
 	
-//	public Salarie(int id, String nom, String prenom, String email) {
-//		super();
-//		this.id = id;
-//		this.nom = nom;
-//		this.prenom = prenom;
-//		this.email = email;
-//	}
+	public Salarie(int id, String nom, String prenom, String email) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+	}
        
 
 }

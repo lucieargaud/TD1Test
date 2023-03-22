@@ -73,7 +73,7 @@ public class EntrepriseRepositoryTest {
 	}
 	
 	@Test
-	public void getAllSalarie()
+	public void getAllEntreprise()
 	{
 		// Given déjà dans le setup
 		ier.save(new Entreprise("B", "ADR"));
@@ -82,9 +82,9 @@ public class EntrepriseRepositoryTest {
 		List<Entreprise> listeE = ier.findAll();
 		// Then
 		assertThat(listeE).isNotEmpty();
-		assertThat(listeE).hasSize(3);
+		assertThat(listeE).hasSize(4); // déjà une ligne dans la base
 		assertThat(listeE.get(0).getClass()).hasSameClassAs(Entreprise.class);
-		assertThat(listeE.get(2).toString()).hasToString(e.toString());
+		assertThat(listeE.get(3).toString()).hasToString(e.toString());
 	}
 	
 	@Test
